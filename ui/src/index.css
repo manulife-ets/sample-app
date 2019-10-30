@@ -1,0 +1,29 @@
+
+ body {
+  background-color: #fafafa;
+  font-family: "Manulife JH Sans", sans-serif;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #ededed;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.react-tabs__tab--selected {
+  border-bottom: 4px solid #00a758;
+  font-weight: 700;
+}
+
+.react-tabs__tab {
+  cursor: pointer;
+  margin-right: 30px;
+  padding-bottom: 10px;
+}
+
+@media only screen and (max-width : 414px) {
+  h1 {
+    margin-bottom: 0;
+  }
+}

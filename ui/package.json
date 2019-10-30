@@ -1,0 +1,42 @@
+{
+  "name": "url-shortener-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@radd/react": "^1.13.0",
+    "@testing-library/jest-dom": "^4.1.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "3.1.1",
+    "react-tabs": "^3.0.0",
+    "styled-components": "3.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "postbuild": "rimraf ../public && node -e \"require('fs').rename('build', '../public', function(err) { if (err) console.log(err); console.log('File successfully renamed!') })\"",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "https://go-dev.manulife.com/",
+  "devDependencies": {
+    "@testing-library/react": "^9.1.4",
+    "jest-styled-components": "^6.3.3",
+    "rimraf": "^3.0.0"
+  }
+}

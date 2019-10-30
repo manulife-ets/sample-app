@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textfield it works 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: 'Manulife JH Sans',sans-serif;
+  position: relative;
+  width: 100%;
+}
+
+.c1 {
+  color: #8e90a2;
+  cursor: text;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 0.875rem;
+  padding: 0;
+  position: relative;
+}
+
+.c2 {
+  background: none;
+  border: none;
+  box-shadow: 0 1px 0 0 #8e90a2;
+  color: #282b3e;
+  font-size: 1rem;
+  line-height: 1.875rem;
+  outline: none;
+  padding: 0.3125rem 0;
+  -webkit-transition: box-shadow 240ms ease-in-out;
+  transition: box-shadow 240ms ease-in-out;
+  font-family: 'Manulife JH Sans',sans-serif;
+}
+
+.c2:focus {
+  box-shadow: 0 2px 0 0 #00a758;
+}
+
+@media only screen and (max-width :414px) {
+  .c0 {
+    margin-bottom: 1rem;
+  }
+}
+
+<div
+  class="c0"
+>
+  <label
+    class="c1"
+  />
+  <input
+    class="c2"
+    type="text"
+    value=""
+  />
+</div>
+`;

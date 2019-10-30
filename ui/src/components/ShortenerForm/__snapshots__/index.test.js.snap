@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShortenerForm it works 1`] = `
+<form
+  autocomplete="off"
+>
+  <div
+    class="sc-bwzfXH bTvmza"
+  >
+    <div
+      class="sc-htpNat dZrxDk"
+    >
+      <label
+        class="sc-bxivhb dvLITu"
+        for="longUrl"
+      >
+        Enter a looooong URL
+      </label>
+      <input
+        class="sc-ifAKCX kHwQRe"
+        id="longUrl"
+        name="longUrl"
+        placeholder="ex: https://www.manulife.com/really-really-really-really-really-long-url-to-get-it-done-together"
+        type="text"
+        value=""
+      />
+      
+    </div>
+    <button
+      class="sc-bZQynM bmxWlX"
+    >
+      Test
+       It!
+    </button>
+  </div>
+</form>
+`;
