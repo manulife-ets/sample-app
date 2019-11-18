@@ -1,0 +1,26 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      # checkout the repos
+      - uses: actions/checkout@master
+      - name: test1
+        run: |
+          pwd
+          ls -ltr
+      # install dependencies, build, and test
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present          
+      - name: run cf
+        run:  |           
+          cf install-plugin -r CF-Community "cfdev" -f
+          cf  login -u ${{ secrets.cf_username }} -p ${{ secrets.cf_password }} -a ${{ secrets.cf_url }} --skip-ssl-validation  -o Simran-trial -s development
+          cf push cf-node-app -b https://github.com/cloudfoundry/nodejs-buildpack
+          
