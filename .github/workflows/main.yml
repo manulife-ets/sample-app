@@ -8,10 +8,10 @@ jobs:
     steps:
       # checkout the repos
       - uses: actions/checkout@master
-      - name: test1
+      - name: test
         run: |
           pwd
-          ls -ltr
+          ls
       # install dependencies, build, and test
       - name: npm install, build, and test
         run: |
