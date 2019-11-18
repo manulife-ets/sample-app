@@ -1,0 +1,17 @@
+{
+    "name": "@manulifeopensource/gabidemo3",
+    "description": "Hello Gabriela!",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ManulifeOpenSource/gabidemo2.git"
+    },
+    "version": "0.0.10",
+    "license": "MIT",
+    "author": "Microsoft",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "publishConfig": {
+        "registry":"https://npm.pkg.github.com/"
+    }
+}
