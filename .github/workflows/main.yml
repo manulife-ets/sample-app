@@ -6,13 +6,25 @@ jobs:
   build:
     strategy:
       matrix:
-        os: 
-          - windows-latest 
+        os: [windows-latest] 
         node-version: 
           - 8.x
     runs-on: ${{matrix.os}} 
     
     steps:      
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+           echo "::set-output name=dir::$(npm config get cache)"
+
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-      
+      
       # checkout the repos
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
