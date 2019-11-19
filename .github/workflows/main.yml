@@ -11,13 +11,7 @@ jobs:
           - 8.x
     runs-on: ${{matrix.os}} 
     
-    steps:      
-
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-           echo "npm config get cache"
-
+    steps:    
       - uses: actions/cache@v1
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
