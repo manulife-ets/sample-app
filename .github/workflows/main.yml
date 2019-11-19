@@ -7,11 +7,9 @@ jobs:
     strategy:
       matrix:
         os: 
-          - macOS-latest
-          - ubuntu-latest
           - windows-latest 
         node-version: 
-          - 8
+          - 8.x
     runs-on: ${{matrix.os}} 
     
     steps:      
@@ -27,7 +25,12 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present                   
+          npm run test --if-present      
+          
+      - name: Synopsys Detect
+        uses: blackducksoftware/github-action@2.0.0
+        with:
+            args: ‘--blackduck.url=“${{ secrets.BLACKDUCK_URL}}” --blackduck.api.token=“${{ secrets.BLACKDUCK_API_TOKEN}}” --detect.risk.report.pdf=true --detect.report.timeout=600000’
       
       # run cf push
       - name: run cf
