@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest] 
+        os: [ubuntu-latest] 
         node-version: 
           - 8.x
     runs-on: ${{matrix.os}} 
