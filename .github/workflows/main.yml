@@ -17,13 +17,16 @@ jobs:
         id: npm-cache
         run: |
            echo "::set-output name=dir::$(npm config get cache)"    
-           
+      
       - uses: actions/cache@v1
+        id: cache
         with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          path: path/to/dependencies
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+  
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: /install.sh
       
       # checkout the repos
       - name: Use Node.js ${{ matrix.node-version }}
