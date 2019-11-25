@@ -1,18 +1,18 @@
-name: node CI 
-# This workflow is triggered on pushes to the repository.
+name: CI
+
 on: [push]
 
 jobs:
   build:
+    runs-on: windows-latest
+    
     strategy:
       matrix:
-        os: [windows-latest] 
-        node-version: 
-          - 8.x
-    runs-on: ${{matrix.os}} 
-      
-    steps:
+        node-version: [8.x]
+    
+    steps:      
       # checkout the repos
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -23,24 +23,19 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present      
-      
+          npm run test --if-present 
+          
       # GitHub Action for running BlackDuck Code Scans
       # blackduck_url and blackduck_api_token specified in credentials 
       - name: Synopsys Detect
         uses: blackducksoftware/github-action@2.0.0
         with:
           args: '--detect.report.timeout=1200 --blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN}}" --detect.risk.report.pdf=true'
-        
-      # Action for npm install build and test 
-      - name: npm install, build, and test
-        run: |
-          npm install
-      
+
       # run cf push
       # cf_username, cf_password, cf_url specified in credentials 
       - name: run cf
         run:  |           
           cf install-plugin -r CF-Community "cfdev" -f
           cf login -u ${{ secrets.cf_username }} -p ${{ secrets.cf_password }} -a ${{ secrets.cf_url }} --skip-ssl-validation -o Simran-trial -s development 
-          cf push cf-app -b https://github.com/cloudfoundry/nodejs-buildpack
+          cf push sample-app -b https://github.com/cloudfoundry/nodejs-buildpack
