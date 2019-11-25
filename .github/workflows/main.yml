@@ -1,5 +1,5 @@
-name: CI
-
+name: node CI 
+# This workflow is triggered on pushes to the repository.
 on: [push]
 
 jobs:
@@ -11,6 +11,8 @@ jobs:
           - 8.x
     runs-on: ${{matrix.os}} 
     
+    # The cache action will attempt to restore a cache based on the key you provide. 
+    # When the action finds a cache it restores the cached files to the path you configure.
     steps:
       - uses: actions/checkout@v1
       - name: Get npm cache directory
@@ -18,10 +20,13 @@ jobs:
         run: |
            echo "::set-output name=dir::$(npm config get cache)"    
       
+      # The cache action will attempt to restore a cache based on the key you provide
+      # When the action finds a cache it restores the cached files to the path you configure.
       - uses: actions/cache@v1
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**\package.json') }}
+          # You can optionally provide a list of restore-keys that are used when the key doesn't match an existing cache.
           restore-keys: |
             ${{ runner.os }}-node-
       
@@ -37,17 +42,21 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present      
-          
+      
+      # GitHub Action for running BlackDuck Code Scans
+      # blackduck_url and blackduck_api_token specified in credentials 
       - name: Synopsys Detect
         uses: blackducksoftware/github-action@2.0.0
         with:
           args: '--detect.report.timeout=1200 --blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN}}" --detect.risk.report.pdf=true'
         
+      # Action for npm install build and test 
       - name: npm install, build, and test
         run: |
           npm install
       
       # run cf push
+      # cf_username, cf_password, cf_url specified in credentials 
       - name: run cf
         run:  |           
           cf install-plugin -r CF-Community "cfdev" -f
