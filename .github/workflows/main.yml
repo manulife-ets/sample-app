@@ -10,26 +10,8 @@ jobs:
         node-version: 
           - 8.x
     runs-on: ${{matrix.os}} 
-    
-    # The cache action will attempt to restore a cache based on the key you provide. 
-    # When the action finds a cache it restores the cached files to the path you configure.
+      
     steps:
-      - uses: actions/checkout@v1
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-           echo "::set-output name=dir::$(npm config get cache)"    
-      
-      # The cache action will attempt to restore a cache based on the key you provide
-      # When the action finds a cache it restores the cached files to the path you configure.
-      - uses: actions/cache@v1
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**\package.json') }}
-          # You can optionally provide a list of restore-keys that are used when the key doesn't match an existing cache.
-          restore-keys: |
-            ${{ runner.os }}-node-
-      
       # checkout the repos
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
