@@ -1,11 +1,13 @@
-name: "CodeQL"
+name: CodeQL
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - master
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ master ]
+    branches:  
+     - master
   schedule:
     - cron: '37 2 * * 6'
 
@@ -17,8 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript' ]
-        CodeQL supports ['javascript']
+        language: ['javascript']
 
     steps:
     - name: Checkout repository
